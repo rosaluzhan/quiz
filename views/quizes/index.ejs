@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+ <head>   
+      <meta charset="utf-8"> 
+      <title>Creditos</title>
+   	 <link rel='stylesheet' href='/stylesheets/style.css' />
+   	 <link rel="stylesheet" type="text/css" media='only screen and (min-width: 530px) and (min-device-width: 481pxx)' href="/stylesheet/wide.css" />
+     <link rel="stylesheet" type="text/css" media='only screen and (max-width: 480px)' href="/stylesheet/smartphone.css" />
+     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <form name="buscador" id="finder" action="/lista" method="get">
+        Buscador: <input type="text" name="busqueda" value="Texto a buscar...">
+        <button type="submit">Buscar</button>
+    </form>
+    <br>
+    <center>
+    <table class="tabla">
+    <% var i; for (i=0; i < quizes.length; i++) { %>
+        <tr><td align=center><a href="quizes/<%= quizes[i].id %>">Pregunta <%= i+1 %>. <%= quizes[i].pregunta %></a></td></tr>
+     <% } %>
+    </table>
+    <br>
+    <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+  </center>
+  </body>
+</html>
