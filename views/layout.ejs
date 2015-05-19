@@ -13,16 +13,23 @@
   	<div id="page-wrap">
   		<header>
   		<h2>Quiz: El juego de las preguntas</h2> </header>
+        <nav class="main" id="n1" role="navigation">
+             <span><a href="/">Inicio</a></span>
+             <span><a href="/quizes">Preguntas</a></span>
+             <span> <a href = "/author">Créditos</a></span>
+        </nav>
 
-  		<nav class="main" id="n1" role="navigation">
-  			<span><a href="/">Inicio</a></span>
-        <span><a href="/quizes">Preguntas</a></span>
-        <span><a href="/quizes/author">Créditos</a></span>
-  		</nav>
-
-  		<section class="main" id="s1">
-  			<%- body %>
-  		</section>
+        <section class="main" id="s1">
+          <% if (errors.length) { %>
+          <span id='ErrorMsgs'>
+           Corregir errores:<br/>
+          <% for (var i in errors) { %>
+          <span> <%= errors[i].message %> </span><br/>
+          <% } %>
+          </span>
+          <% } %>
+          <div><%- body %></div>
+        </section>
 
   		<footer class="main" id="f1">
   			<a href="https://github.com/rosaluzhan/quiz">Quiz en Github</a>

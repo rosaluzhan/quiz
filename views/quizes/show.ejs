@@ -10,11 +10,18 @@
   </head>
   <body>
     <h2>Quiz: El juego de las preguntas</h2>
-         <form method="get" action="/quizes/<%= quiz.id %>/answer"
-           Pregunta: <%= quiz.pregunta %> <p>
-          <input type='text' name="respuesta" value="Respuesta"  />
-           <input type="submit" value="Enviar">
-        </form>
+         <form method="get" action="/quizes/<%= quiz.id %>/answer">        
+         <%= quiz.pregunta %> <p>
+          <input type="text" name="respuesta" value="Respuesta"/>
+          <input type="submit" value="Enviar">
+          </form>
+
+          <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+
+          <p><strong>Comentarios:</strong></p>
+          <%for(index in quiz.Comments){%>
+          <p>- <%=quiz.Comments[index].texto%></p>
+          <%}%>
   </body>
 </html>
 
