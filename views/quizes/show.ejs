@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html> 
-  <head>   
-      <meta charset="utf-8"> 
-      <title>Quiz</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" type="text/css" media='only screen and (min-width: 530px) and (min-device-width: 481pxx)' href="/stylesheet/wide.css" />
-     <link rel="stylesheet" type="text/css" media='only screen and (max-width: 480px)' href="/stylesheet/smartphone.css" />
-      <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  </head>
-  <body>
-    <h2>Quiz: El juego de las preguntas</h2>
-         <form method="get" action="/quizes/<%= quiz.id %>/answer">        
-         <%= quiz.pregunta %> <p>
-          <input type="text" name="respuesta" value="Respuesta"/>
-          <input type="submit" value="Enviar">
-          </form>
+<form method="get" action="/quizes/<%= quiz.id %>/answer">        
+  <%= quiz.pregunta %> <p>
+  <input type="text" name="respuesta" value="Respuesta"/>
+  <input type="submit" value="Enviar">
+</form>
 
-          <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
 
-          <p><strong>Comentarios:</strong></p>
-          <%for(index in quiz.Comments){%>
-          <p>- <%=quiz.Comments[index].texto%></p>
-          <%}%>
-  </body>
-</html>
+<p><strong>Comentarios:</strong></p>
+<%for(index in quiz.Comments){%>
+  <%if(quiz.Comments[index].publicado || session.user){%>
+    <p>- <%=quiz.Comments[index].texto%>
 
+    
+      <%if(session.user && !quiz.Comments[index].publicado){%>
+        <a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish"><button>Publicar</button></a>
+      <%}%>
+    </p>
+  <%}%> 
+<%}%>
+ 

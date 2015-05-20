@@ -1,0 +1,27 @@
+<h2><u>Estadísticas de la Base de Datos</u></h2>
+<br>
+   <%var conComentarios = 0; var nMedio = comment.length/quizes.length%>
+
+   <% var i; for (i=0; i < quizes.length; i++) { %>
+      <% var j; for (j=0; j < comment.length; j++) { %>
+        <% if(comment[j].QuizId === i){ %>
+        <% conComentarios++; %>
+        <% } %>
+        <% } %>
+      <% } %>
+  <table class="tablaestadisticas">   
+      <tr><td align=left>Número de preguntas:</td>
+          <td align=center><%=quizes.length%></td></tr>
+      <tr><td align=left>Número de comentarios totales:</td>
+        <td align=center><%=comment.length%></td>
+      </tr>
+      <tr><td align=left>Número medio aproximado de comentarios por pregunta:</td>
+          <td align=center><%= nMedio %> ~ <%=Math.ceil(nMedio)%></td>
+      </tr>
+      <tr><td align=left>Número de preguntas sin comentarios:</td>
+          <td align=center><%= quizes.length - conComentarios%></td>
+      </tr>
+      <tr><td align=left>Número de preguntas con comentarios:</td>
+          <td align=center><%= conComentarios%></td>
+      </tr>
+  </table>
