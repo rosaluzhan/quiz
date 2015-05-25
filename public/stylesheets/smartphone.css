@@ -13,3 +13,7 @@ body{
 footer, input, button {
 	font-size: large;
 }
+
+.quiz_img { 
+	float: none; 
+} 
