@@ -41,7 +41,7 @@ router.get('/author', function(req, res) {
 
 
 // GET estadisticas
-router.get('quizes/stadistics', quizController.stadistics);
+router.get('/quizes/stadistics', quizController.stadistics);
 
 // Definición de rutas de comentarios	
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
