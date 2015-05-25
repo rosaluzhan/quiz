@@ -135,12 +135,26 @@ exports.destroy = function(req, res) {
 };
 
 
-// Estadisticas
-exports.statistics = function(req,res){
-  
-  models.Comment.findAll().then(function(comment){
-  models.Quiz.findAll().then(function(quizes){
-    res.render('quizes/stadistics',{quiz: req.quiz, quizes: quizes, comment: comment, errors: []});
-  })
-  }).catch(function(error) { next(error)});
-};
+//Estadisticas
+exports.stadistics = function(req, res) {
+models.Quiz.count().then(function(num_preg){
+    models.Comment.count().then(function(num_com){
+        models.Quiz.findAll({ include: [{ model: models.Comment }] }).then(function(quizes){
+            var preg_con_coment=0;
+            for(preg in quizes){
+                if(quizes[preg].Comments.length)
+                preg_con_coment++;
+            }
+            
+            res.render('quizes/stadistics', {
+                num_preg: num_preg,
+                num_com: num_com,
+                media: num_com / num_preg,
+                preg_con_coment: preg_con_coment,
+                preg_sin_coment: num_preg - preg_con_coment,
+                errors: []});
+        })
+    })
+});
+}
+
