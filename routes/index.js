@@ -6,7 +6,7 @@ var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var userController = require('../controllers/user_controller');
-var favouriteController = require('../controllers/favourite_Controller');
+var favouriteController = require('../controllers/favourite_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
